@@ -1,0 +1,16 @@
+apply plugin: 'kotlin'
+
+dependencies {
+    def domainDependencies = rootProject.ext.domainDependencies
+
+    implementation project(":common")
+
+    implementation domainDependencies.kotlin
+    implementation domainDependencies.javaxAnnotation
+    implementation domainDependencies.javaxInject
+    implementation domainDependencies.rxJava
+    implementation domainDependencies.gson
+}
+
+sourceCompatibility = rootProject.ext.sourceCompatibility
+targetCompatibility = rootProject.ext.targetCompatibility

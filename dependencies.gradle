@@ -1,0 +1,94 @@
+ext {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    compileSDKVersion = 28
+    buildToolsVersion = "28.0.3"
+    minSDKVersion = 21
+    targetSDKVersion = 28
+    multiDexEnabled = true
+
+    kotlin_version = '1.3.41'
+    rxAndroid = '2.1.1'
+    rxJavaVersion = '2.2.11'
+    rxRelayVersion = '2.1.0'
+    javaxAnnotationVersion = '1.3.2'
+    javaxInjectVersion = '1'
+    okHttpVersion = '3.12.1'
+    retrofitVersion = '2.5.0'
+    retrofitRxJavaAdapterVersion = '1.0.0'
+    okHttpVersion = '3.10.0'
+    archComponents = '1.1.1'
+    daggerVersion = "2.18"
+    assertJVersion = '3.10.0'
+    jUnitVersion = '4.12'
+    mockitoVersion = '2.23.4'
+    supportLibraryVersion = "28.0.0"
+
+    remoteDependencies = [
+            javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
+            javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
+            okHttp         : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
+            retrofit       : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofitMock   : "com.squareup.retrofit2:retrofit-mock:${retrofitVersion}",
+            gson           : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            rxJavaAdapter  : "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
+            jwRxJavaAdapter: "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:${retrofitRxJavaAdapterVersion}",
+            okHttpLogging  : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
+            kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}",
+
+            //Testing libraries
+            jUnit          : "junit:junit:${jUnitVersion}",
+            assertJ        : "org.assertj:assertj-core:${assertJVersion}",
+            mockitoCore    : "org.mockito:mockito-core:${mockitoVersion}",
+            mockitoInline  : "org.mockito:mockito-inline:${mockitoVersion}",
+
+    ]
+
+    dataDependencies = [
+            kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}",
+            javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
+            javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
+            rxJava         : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}"
+    ]
+
+    domainDependencies = [
+            kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}",
+            javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
+            javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
+            rxJava         : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            gson           : "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    ]
+    presentationDependencies = [
+            kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}",
+            javaxAnnotation   : "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
+            javaxInject       : "javax.inject:javax.inject:${javaxInjectVersion}",
+            gson              : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            rxAndroid         : "io.reactivex.rxjava2:rxandroid:${rxAndroid}",
+            archRuntime       : "android.arch.lifecycle:runtime:${archComponents}",
+            archExtensions    : "android.arch.lifecycle:extensions:${archComponents}",
+            archCompiler      : "android.arch.lifecycle:compiler:${archComponents}",
+            rxKotlin          : "io.reactivex.rxjava2:rxkotlin:2.2.0",
+            androidAnnotations: "com.android.support:support-annotations:${supportLibraryVersion}",
+            daggerCompiler    : "com.google.dagger:dagger-compiler:$daggerVersion",
+            dagger            : "com.google.dagger:dagger:$daggerVersion",
+    ]
+
+
+    appDependencies = [
+            kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}",
+            javaxAnnotation   : "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
+            javaxInject       : "javax.inject:javax.inject:${javaxInjectVersion}",
+            rxKotlin          : "io.reactivex.rxjava2:rxkotlin:2.2.0",
+            rxAndroid         : "io.reactivex.rxjava2:rxandroid:${rxAndroid}",
+            archRuntime       : "android.arch.lifecycle:runtime:${archComponents}",
+            archExtensions    : "android.arch.lifecycle:extensions:${archComponents}",
+            archCompiler      : "android.arch.lifecycle:compiler:${archComponents}",
+            daggerCompiler    : "com.google.dagger:dagger-compiler:${daggerVersion}",
+            dagger            : "com.google.dagger:dagger-android:${daggerVersion}",
+            daggerSupport     : "com.google.dagger:dagger-android-support:${daggerVersion}",
+            daggerProcessor   : "com.google.dagger:dagger-android-processor:${daggerVersion}",
+            androidAnnotations: "com.android.support:support-annotations:${supportLibraryVersion}",
+            supportAppCompat  : "com.android.support:appcompat-v7:${supportLibraryVersion}",
+            supportV4         : "com.android.support:support-v4:${supportLibraryVersion}",
+    ]
+}
