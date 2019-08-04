@@ -6,28 +6,24 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            android:gravity="center_vertical"
-            app:layout_collapseMode="pin"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:theme="@style/MyToolbarTheme"
-            app:title="@string/app_name"/>
-
-    <android.support.design.widget.TabLayout
-            android:id="@+id/tabLayout"
+    <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="?actionBarSize"
-            app:tabGravity="fill"
-            app:tabIndicatorColor="@color/white_v100"
-            app:tabIndicatorHeight="2dp"
-            app:tabBackground="@color/colorPrimary"
-            app:tabMode="fixed">
-    </android.support.design.widget.TabLayout>
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="?actionBarSize"
+                app:tabGravity="fill"
+                app:tabIndicatorColor="@color/white_v100"
+                app:tabIndicatorHeight="2dp"
+                app:tabBackground="@color/colorPrimary"
+                app:tabMode="fixed">
+        </android.support.design.widget.TabLayout>
+    </android.support.design.widget.AppBarLayout>
     <android.support.v4.view.ViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"

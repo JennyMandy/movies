@@ -1,4 +1,4 @@
-package com.jenny.movies
+package com.jenny.movies.listener
 
 interface MovieClickListener {
     fun imageClicked(position: Int)

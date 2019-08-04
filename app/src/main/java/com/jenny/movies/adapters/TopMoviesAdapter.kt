@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.jenny.domain.model.Movie
 import com.jenny.movies.Constants
-import com.jenny.movies.MovieClickListener
+import com.jenny.movies.listener.MovieClickListener
 import com.jenny.movies.R
 import com.squareup.picasso.Picasso
 

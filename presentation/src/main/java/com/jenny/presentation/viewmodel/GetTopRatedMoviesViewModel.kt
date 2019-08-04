@@ -5,6 +5,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.jenny.domain.model.Movie
 import com.jenny.domain.response.TopRatedMovieResponse
+import com.jenny.domain.usecase.GetSearchedMovies
 import com.jenny.domain.usecase.GetTopRatedMovies
 import com.jenny.domain.usecase.SaveSelectedMovie
 import com.jenny.domain.usecase.SetFavouritedMovie
@@ -18,16 +19,19 @@ class GetTopRatedMoviesViewModel @Inject
 constructor(
     private val getTopRatedMovies: GetTopRatedMovies,
     private val saveSelectedMovie: SaveSelectedMovie,
-    private val setFavouritedMovie: SetFavouritedMovie
+    private val setFavouritedMovie: SetFavouritedMovie,
+    private val getSearchedMovies: GetSearchedMovies
 ) : ViewModel() {
     private val getTopRatedMoviesLiveData = MutableLiveData<Resource<TopRatedMovieResponse>>()
     private val saveSelectedMovieLiveData = MutableLiveData<Resource<Void>>()
     private val setFavouritedMovieLiveData = MutableLiveData<Resource<Void>>()
+    private val getSearchedMoviesLiveData = MutableLiveData<Resource<TopRatedMovieResponse>>()
 
     override fun onCleared() {
         getTopRatedMovies.disposeAll()
         saveSelectedMovie.disposeAll()
         setFavouritedMovie.disposeAll()
+        getSearchedMovies.disposeAll()
     }
 
     // Observe Get Top Rated Movies Response...
@@ -61,6 +65,17 @@ constructor(
     fun setFavouritedMovie(movie: Movie) {
         setFavouritedMovieLiveData.postValue(Resource(ResourceState.LOADING, null, null))
         setFavouritedMovie.execute(SetFavouritedMovieSubscriber(), SetFavouritedMovie.Params.getParams(movie))
+    }
+
+    // Observe Get Searched Movies Response...
+    fun observeGetSearchedMoviesResponse(): LiveData<Resource<TopRatedMovieResponse>> {
+        return getSearchedMoviesLiveData
+    }
+
+    // Get Searched Movies Response...
+    fun getSearchedMovies(pageNo: Int, query: String) {
+        getSearchedMoviesLiveData.postValue(Resource(ResourceState.LOADING, null, null))
+        getSearchedMovies.execute(GetSearchedMoviesSubscriber(), GetSearchedMovies.Params.getParams(pageNo, query))
     }
 
     // Get Top Rated Movies Response Subscriber...
@@ -97,19 +112,6 @@ constructor(
         }
     }
 
-    /*
-
-    // Observe Get Searched Movies Response...
-    fun observeGetSearchedMoviesResponse(): LiveData<Resource<TopRatedMovieResponse>> {
-        return getSearchedMoviesLiveData
-    }
-
-    // Get Searched Movies Response...
-    fun getSearchedMovies(pageNo: Int, query: String) {
-        getSearchedMoviesLiveData.postValue(Resource(ResourceState.LOADING, null, null))
-        getSearchedMovies.execute(GetSearchedMoviesSubscriber(), GetSearchedMovies.Params.getParams(pageNo, query))
-    }
-
     // Get Searched Movies Response Subscriber...
     private inner class GetSearchedMoviesSubscriber : DisposableSingleObserver<TopRatedMovieResponse>() {
         override fun onSuccess(t: TopRatedMovieResponse) {
@@ -121,7 +123,5 @@ constructor(
         }
 
     }
-
-     */
 
 }
