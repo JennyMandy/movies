@@ -2,5 +2,6 @@ package com.jenny.data.store
 
 import javax.inject.Inject
 
-class MoviesDataStoreFactory @Inject constructor(val moviesRemoteDataStore: MoviesRemoteDataStore) {
+class MoviesDataStoreFactory @Inject
+constructor(val moviesRemoteDataStore: MoviesRemoteDataStore, val moviesCacheDataStore: MoviesCacheDataStore) {
 }

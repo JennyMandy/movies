@@ -1,6 +1,6 @@
 package com.jenny.movies
 
 object Constants {
-    public val POSITION = "position"
-    public val MOVIE = "movie"
+    const val IMAGE_URL = "https://image.tmdb.org/t/p/w500"
+    public val MOVIE_ID = "movieId"
 }

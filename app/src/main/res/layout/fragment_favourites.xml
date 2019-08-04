@@ -3,10 +3,12 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <TextView
-            android:id="@+id/tv1"
+    <GridView
+            android:id="@+id/grid_favorite_movies"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:numColumns="2"
+            android:horizontalSpacing="4dp"
             android:gravity="center"
-            android:text="Favourites"/>
+            android:stretchMode="columnWidth"/>
 </LinearLayout>

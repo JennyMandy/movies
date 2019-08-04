@@ -8,18 +8,21 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.jenny.domain.model.Movie
+import com.jenny.movies.Constants
+import com.jenny.movies.MovieClickListener
 import com.jenny.movies.R
-import com.jenny.remote.constants.Constants
 import com.squareup.picasso.Picasso
 
 class TopMoviesAdapter(
-    private val context: Context?
+    private val context: Context?,
+    private val movieClickListener: MovieClickListener
 ) : BaseAdapter() {
     private var movieList: MutableList<Movie> = arrayListOf()
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
         val view: View?
         val viewHolder: ViewHolder
+
         if (convertView == null) {
             view = LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false)
             viewHolder = ViewHolder(view)
@@ -30,7 +33,14 @@ class TopMoviesAdapter(
         }
         val movie = movieList.get(position)
         viewHolder.name.text = movie.title
-        Picasso.get().load(Constants.IMAGE_URL + movie.poster_path).placeholder(R.drawable.abc_ic_ab_back_material).into(viewHolder.poster)
+        Picasso.get().load(Constants.IMAGE_URL + movie.poster_path).placeholder(R.drawable.abc_ic_ab_back_material)
+            .into(viewHolder.poster)
+        viewHolder.poster.setOnClickListener {
+            movieClickListener.imageClicked(position)
+        }
+        viewHolder.addToFavorites.setOnClickListener {
+            movieClickListener.favoriteClicked(position)
+        }
         return view
     }
 
@@ -52,11 +62,13 @@ class TopMoviesAdapter(
 
     private class ViewHolder(view: View) {
         val poster: ImageView
+        val addToFavorites: ImageView
         val name: TextView
 
         init {
             this.poster = view.findViewById(R.id.poster) as ImageView
             this.name = view.findViewById(R.id.name) as TextView
+            this.addToFavorites = view.findViewById(R.id.addToFavorites) as ImageView
         }
     }
 }

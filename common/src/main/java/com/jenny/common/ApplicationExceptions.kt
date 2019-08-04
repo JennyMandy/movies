@@ -15,5 +15,6 @@ class ApplicationExceptions private constructor() {
         const val NO_NULL_OBSERVER = "Observer cannot be null."
         const val NO_NULL_EXECUTION_THREAD = "ExecutionThread cannot be null."
         const val NO_NULL_SCHEDULER = "Scheduler cannot be null."
+        const val NO_ZERO_ID = "ID cannot be 0."
     }
 }

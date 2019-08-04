@@ -32,6 +32,7 @@ dependencies {
     implementation project(':remote')
     implementation project(':presentation')
     implementation project(':common')
+    implementation project(':cache')
 
     implementation appDependencies.kotlin
     implementation appDependencies.javaxAnnotation
@@ -48,6 +49,10 @@ dependencies {
     implementation appDependencies.design
     implementation appDependencies.picasso
     implementation appDependencies.constraintLayout
+    implementation appDependencies.roomRuntime
+    implementation appDependencies.roomRx
+
+    kapt appDependencies.roomCompiler
     kapt appDependencies.daggerCompiler
     kapt appDependencies.daggerProcessor
     kapt appDependencies.archCompiler

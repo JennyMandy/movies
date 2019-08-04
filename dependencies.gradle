@@ -28,6 +28,7 @@ ext {
     robolectricVersion = "4.0.2"
     picassoVersion = '2.71828'
     constraintLayoutVersion = '1.1.2'
+    roomVersion = "1.1.1"
 
     remoteDependencies = [
             javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
@@ -48,7 +49,6 @@ ext {
             mockitoInline  : "org.mockito:mockito-inline:${mockitoVersion}",
 
     ]
-
     dataDependencies = [
             kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}",
             javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
@@ -61,7 +61,6 @@ ext {
             mockitoCore    : "org.mockito:mockito-core:${mockitoVersion}",
             mockitoInline  : "org.mockito:mockito-inline:${mockitoVersion}",
     ]
-
     domainDependencies = [
             kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}",
             javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
@@ -100,8 +99,6 @@ ext {
             mockitoCore       : "org.mockito:mockito-core:${mockitoVersion}",
             mockitoInline     : "org.mockito:mockito-inline:${mockitoVersion}"
     ]
-
-
     appDependencies = [
             kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}",
             javaxAnnotation   : "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
@@ -120,6 +117,24 @@ ext {
             supportV4         : "com.android.support:support-v4:${supportLibraryVersion}",
             design            : "com.android.support:design:${supportLibraryVersion}",
             picasso           : "com.squareup.picasso:picasso:${picassoVersion}",
-            constraintLayout: "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}"
+            constraintLayout  : "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
+            roomRuntime       : "android.arch.persistence.room:runtime:$roomVersion",
+            roomCompiler      : "android.arch.persistence.room:compiler:$roomVersion",
+            roomRx            : "android.arch.persistence.room:rxjava2:$roomVersion",
+    ]
+    cacheDependencies = [
+            javaxAnnotation   : "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
+            javaxInject       : "javax.inject:javax.inject:${javaxInjectVersion}",
+            kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}",
+            gson              : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            rxKotlin          : "io.reactivex.rxjava2:rxkotlin:2.2.0",
+            androidAnnotations: "com.android.support:support-annotations:${supportLibraryVersion}",
+            roomRuntime       : "android.arch.persistence.room:runtime:$roomVersion",
+            roomCompiler      : "android.arch.persistence.room:compiler:$roomVersion",
+            roomRx            : "android.arch.persistence.room:rxjava2:$roomVersion",
+            daggerCompiler    : "com.google.dagger:dagger-compiler:$daggerVersion",
+            dagger            : "com.google.dagger:dagger:$daggerVersion"
+
+            //Testing libraries
     ]
 }
