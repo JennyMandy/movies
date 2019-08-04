@@ -16,5 +16,6 @@ class ApplicationExceptions private constructor() {
         const val NO_NULL_EXECUTION_THREAD = "ExecutionThread cannot be null."
         const val NO_NULL_SCHEDULER = "Scheduler cannot be null."
         const val NO_ZERO_ID = "ID cannot be 0."
+        const val NO_NULL_QUERY = "Query cannot be null."
     }
 }

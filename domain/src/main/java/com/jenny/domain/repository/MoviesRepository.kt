@@ -7,6 +7,7 @@ import io.reactivex.Single
 
 interface MoviesRepository {
     fun getTopRatedMovies(pageNo: Int): Single<TopRatedMovieResponse>
+    fun getSearchResults(pageNo: Int, query: String): Single<TopRatedMovieResponse>
     fun getSelectedMovie(movieId: Int): Single<Movie>
     fun setSelectedMovie(movie: Movie): Completable
     fun getFavouritedMovies(): Single<MutableList<Movie>>

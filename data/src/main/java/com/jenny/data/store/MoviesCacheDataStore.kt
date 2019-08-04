@@ -14,6 +14,10 @@ class MoviesCacheDataStore @Inject constructor(private val moviesCache: MoviesCa
         throw IllegalArgumentException(ApplicationExceptions.NO_CACHE_SUPPORT)
     }
 
+    override fun getSearchResults(pageNo: Int, query: String): Single<TopRatedMovieResponse> {
+        throw IllegalArgumentException(ApplicationExceptions.NO_CACHE_SUPPORT)
+    }
+
     override fun getSelectedMovie(movieId: Int): Single<Movie> {
         return moviesCache.getSelectedMovie(movieId)
     }

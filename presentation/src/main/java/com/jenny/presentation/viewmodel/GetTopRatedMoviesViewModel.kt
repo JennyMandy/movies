@@ -30,7 +30,7 @@ constructor(
         setFavouritedMovie.disposeAll()
     }
 
-    // Observe Get Top Rated MoviesResponse...
+    // Observe Get Top Rated Movies Response...
     fun observeGetTopRatedMoviesResponse(): LiveData<Resource<TopRatedMovieResponse>> {
         return getTopRatedMoviesLiveData
     }
@@ -96,5 +96,32 @@ constructor(
             setFavouritedMovieLiveData.postValue(Resource(ResourceState.ERROR, null, e.message))
         }
     }
+
+    /*
+
+    // Observe Get Searched Movies Response...
+    fun observeGetSearchedMoviesResponse(): LiveData<Resource<TopRatedMovieResponse>> {
+        return getSearchedMoviesLiveData
+    }
+
+    // Get Searched Movies Response...
+    fun getSearchedMovies(pageNo: Int, query: String) {
+        getSearchedMoviesLiveData.postValue(Resource(ResourceState.LOADING, null, null))
+        getSearchedMovies.execute(GetSearchedMoviesSubscriber(), GetSearchedMovies.Params.getParams(pageNo, query))
+    }
+
+    // Get Searched Movies Response Subscriber...
+    private inner class GetSearchedMoviesSubscriber : DisposableSingleObserver<TopRatedMovieResponse>() {
+        override fun onSuccess(t: TopRatedMovieResponse) {
+            getSearchedMoviesLiveData.postValue(Resource(ResourceState.SUCCESS, t, null))
+        }
+
+        override fun onError(e: Throwable) {
+            getSearchedMoviesLiveData.postValue(Resource(ResourceState.ERROR, null, e.message))
+        }
+
+    }
+
+     */
 
 }

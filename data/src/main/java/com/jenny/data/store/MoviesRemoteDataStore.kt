@@ -14,6 +14,10 @@ class MoviesRemoteDataStore @Inject constructor(private val moviesRemote: Movies
         return moviesRemote.getTopRatedMovies(pageNo)
     }
 
+    override fun getSearchResults(pageNo: Int, query: String): Single<TopRatedMovieResponse> {
+        return moviesRemote.getSearchResults(pageNo, query)
+    }
+
     override fun getSelectedMovie(movieId: Int): Single<Movie> {
         throw IllegalArgumentException(ApplicationExceptions.NO_REMOTE_SUPPORT)
     }

@@ -15,4 +15,6 @@ public interface MoviesDataStore {
     fun getFavouritedMovies(): Single<MutableList<Movie>>
 
     fun setFavouriteMovie(movie: Movie): Completable
+
+    fun getSearchResults(pageNo: Int, query: String): Single<TopRatedMovieResponse>
 }

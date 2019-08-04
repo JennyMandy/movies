@@ -11,4 +11,11 @@ interface MovieListService {
         @Query("api_key") apiKey: String,
         @Query("page") page: Int
     ): Single<TopRatedMovieResponse>
+
+    @GET("search/movie")
+    fun getSearchResults(
+        @Query("api_key") apiKey: String,
+        @Query("page") page: Int,
+        @Query("query") query: String
+    ): Single<TopRatedMovieResponse>
 }

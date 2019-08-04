@@ -16,6 +16,10 @@ constructor(
         return moviesDataStoreFactory.moviesRemoteDataStore.getTopRatedMovies(pageNo)
     }
 
+    override fun getSearchResults(pageNo: Int, query: String): Single<TopRatedMovieResponse> {
+        return moviesDataStoreFactory.moviesRemoteDataStore.getSearchResults(pageNo, query)
+    }
+
     override fun getSelectedMovie(movieId: Int): Single<Movie> {
         return moviesDataStoreFactory.moviesCacheDataStore.getSelectedMovie(movieId)
     }
