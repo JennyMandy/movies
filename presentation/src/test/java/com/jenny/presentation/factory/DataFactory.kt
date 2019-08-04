@@ -1,4 +1,4 @@
-package com.jenny.remote.factory
+package com.jenny.presentation.factory
 
 import com.jenny.domain.model.Movie
 import com.jenny.domain.response.TopRatedMovieResponse

@@ -9,6 +9,12 @@ dependencies {
     implementation dataDependencies.javaxAnnotation
     implementation dataDependencies.javaxInject
     implementation dataDependencies.rxJava
+
+    //Testing libraries
+    testImplementation dataDependencies.jUnit
+    testImplementation dataDependencies.assertJ
+    testImplementation dataDependencies.mockitoCore
+    testImplementation dataDependencies.mockitoInline
 }
 
 sourceCompatibility = rootProject.ext.sourceCompatibility

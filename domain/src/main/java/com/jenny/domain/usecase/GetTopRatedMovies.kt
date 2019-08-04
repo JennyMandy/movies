@@ -4,6 +4,7 @@ import com.jenny.common.ApplicationExceptions
 import com.jenny.domain.executor.PostExecutionThread
 import com.jenny.domain.repository.MoviesRepository
 import com.jenny.domain.response.TopRatedMovieResponse
+import com.jenny.domain.usecase.common.SingleUseCase
 import io.reactivex.Single
 import javax.inject.Inject
 

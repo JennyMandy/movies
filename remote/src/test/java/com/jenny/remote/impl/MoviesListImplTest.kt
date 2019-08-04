@@ -11,6 +11,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.mockito.Mockito
+import org.mockito.Mockito.verify
 
 @RunWith(JUnit4::class)
 class MoviesListImplTest {
@@ -20,10 +21,10 @@ class MoviesListImplTest {
 
     @Before
     fun setup() {
-        stubGetRatingsService()
+        stubGetService()
     }
 
-    private fun stubGetRatingsService() {
+    private fun stubGetService() {
         Mockito.`when`(serviceFactory.getMoviesApiService()).thenReturn(movieListService)
     }
 
@@ -32,11 +33,29 @@ class MoviesListImplTest {
     }
 
     @Test
-    fun getExchangeableItemsCompletesTest() {
+    fun getMovieListCompletesTest() {
         val pageNo = 1
-        val exchangeableItemResponse = DataFactory.getRandomTopMovieList()
-        stubGetTopRatedMovies(Single.just(exchangeableItemResponse), pageNo)
+        val movieList = DataFactory.getRandomTopMovieList()
+        stubGetTopRatedMovies(Single.just(movieList), pageNo)
         val testObserver = moviesListRemoteImpl.getTopRatedMovies(pageNo).test()
         testObserver.assertComplete()
+    }
+
+    @Test
+    fun getMoviesListApiCalled() {
+        val pageNo = 1
+        val movieList = DataFactory.getRandomTopMovieList()
+        stubGetTopRatedMovies(Single.just(movieList), pageNo)
+        moviesListRemoteImpl.getTopRatedMovies(pageNo).test()
+        verify(movieListService).getTopRatedMovies(Constants.API_KEY, pageNo)
+    }
+
+    @Test
+    fun getMoviesListReturnsData() {
+        val pageNo = 1
+        val movieList = DataFactory.getRandomTopMovieList()
+        stubGetTopRatedMovies(Single.just(movieList), pageNo)
+        val testObserver = moviesListRemoteImpl.getTopRatedMovies(pageNo).test()
+        testObserver.assertValue(movieList)
     }
 }

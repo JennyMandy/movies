@@ -1,4 +1,4 @@
-package com.jenny.domain.usecase
+package com.jenny.domain.usecase.common
 
 import com.jenny.common.ApplicationExceptions
 import com.jenny.domain.executor.PostExecutionThread

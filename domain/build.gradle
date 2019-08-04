@@ -10,6 +10,12 @@ dependencies {
     implementation domainDependencies.javaxInject
     implementation domainDependencies.rxJava
     implementation domainDependencies.gson
+
+    //Testing libraries
+    testImplementation domainDependencies.jUnit
+    testImplementation domainDependencies.assertJ
+    testImplementation domainDependencies.mockitoCore
+    testImplementation domainDependencies.mockitoInline
 }
 
 sourceCompatibility = rootProject.ext.sourceCompatibility

@@ -9,6 +9,6 @@ import javax.inject.Inject
 class MoviesDataRepositoryImpl @Inject
 constructor(private val moviesDataStoreFactory: MoviesDataStoreFactory) : MoviesRepository {
     override fun getTopRatedMovies(pageNo: Int): Single<TopRatedMovieResponse> {
-        return moviesDataStoreFactory.getDataStore(false).getTopRatedMovies(pageNo)
+        return moviesDataStoreFactory.moviesRemoteDataStore.getTopRatedMovies(pageNo)
     }
 }

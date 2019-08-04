@@ -23,6 +23,7 @@ android {
     testOptions {
         unitTests {
             includeAndroidResources = true
+            returnDefaultValues = true
         }
     }
 
@@ -50,4 +51,15 @@ dependencies {
     implementation presentationDependencies.dagger
     kapt presentationDependencies.daggerCompiler
     kapt presentationDependencies.archCompiler
+
+    //Testing libraries
+    testImplementation presentationDependencies.jUnit
+    testImplementation presentationDependencies.mockitoKotlin
+    testImplementation presentationDependencies.mockitoCore
+    testImplementation presentationDependencies.mockitoInline
+    testImplementation presentationDependencies.assertJ
+    testImplementation presentationDependencies.archTesting
+    testImplementation presentationDependencies.robolectric
+    androidTestImplementation presentationDependencies.androidTestRules
+    androidTestImplementation presentationDependencies.androidRunner
 }
