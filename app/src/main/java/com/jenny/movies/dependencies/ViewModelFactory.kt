@@ -1,21 +1,23 @@
 package com.jenny.movies.dependencies
 
+import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModelProvider
 import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
 
 @Singleton
-open class ViewModelFactory : android.arch.lifecycle.ViewModelProvider.Factory {
+open class ViewModelFactory : ViewModelProvider.Factory {
 
-    private val creators: Map<Class<out android.arch.lifecycle.ViewModel>, Provider<android.arch.lifecycle.ViewModel>>
+    private val creators: Map<Class<out ViewModel>, Provider<ViewModel>>
 
     @Inject
-    constructor(creators: Map<Class<out android.arch.lifecycle.ViewModel>, @JvmSuppressWildcards Provider<android.arch.lifecycle.ViewModel>>) {
+    constructor(creators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>) {
         this.creators = creators
     }
 
-    override fun <T : android.arch.lifecycle.ViewModel?> create(modelClass: Class<T>): T {
-        var creator: Provider<out android.arch.lifecycle.ViewModel>? = creators[modelClass]
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        var creator: Provider<out ViewModel>? = creators[modelClass]
         if (creator == null) {
             for ((key, value) in creators) {
                 if (modelClass.isAssignableFrom(key)) {

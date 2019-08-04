@@ -26,6 +26,8 @@ ext {
     mockitoKotlinVersion = "1.6.0"
     androidTestRunner = '1.1.1'
     robolectricVersion = "4.0.2"
+    picassoVersion = '2.71828'
+    constraintLayoutVersion = '1.1.2'
 
     remoteDependencies = [
             javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
@@ -116,5 +118,8 @@ ext {
             androidAnnotations: "com.android.support:support-annotations:${supportLibraryVersion}",
             supportAppCompat  : "com.android.support:appcompat-v7:${supportLibraryVersion}",
             supportV4         : "com.android.support:support-v4:${supportLibraryVersion}",
+            design            : "com.android.support:design:${supportLibraryVersion}",
+            picasso           : "com.squareup.picasso:picasso:${picassoVersion}",
+            constraintLayout: "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}"
     ]
 }

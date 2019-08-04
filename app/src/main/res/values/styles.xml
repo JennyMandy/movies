@@ -13,4 +13,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="MyToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark">
+        <item name="colorControlNormal">@color/white_v100</item>
+        <item name="titleTextColor">@color/white_v100</item>
+    </style>
+
 </resources>

@@ -45,6 +45,9 @@ dependencies {
     implementation appDependencies.androidAnnotations
     implementation appDependencies.supportAppCompat
     implementation appDependencies.supportV4
+    implementation appDependencies.design
+    implementation appDependencies.picasso
+    implementation appDependencies.constraintLayout
     kapt appDependencies.daggerCompiler
     kapt appDependencies.daggerProcessor
     kapt appDependencies.archCompiler
