@@ -8,9 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.GridView
-import android.widget.Toast
+import android.widget.*
 import com.jenny.domain.model.Movie
 import com.jenny.movies.Constants
 import com.jenny.movies.R
@@ -31,6 +29,7 @@ class FragmentFavourites : DaggerFragment() {
     lateinit var viewModelFactory: ViewModelFactory
 
     private lateinit var gridView: GridView
+    private lateinit var emptyState: LinearLayout
     private var movieId = 0;
 
     private var movieList: MutableList<Movie>? = null
@@ -39,12 +38,13 @@ class FragmentFavourites : DaggerFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_favourites, container, false)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(FavoritesViewModel::class.java)
-        observeGetFavoritedMovieResponse()
-        observeSaveSelectedMovieResponse()
-
         gridView = view.findViewById(R.id.grid_favorite_movies)
+        emptyState = view.findViewById(R.id.empty_state)
         favoriteMoviesAdapter = FavoriteMoviesAdapter(context)
         gridView.adapter = favoriteMoviesAdapter
+
+        observeGetFavoritedMovieResponse()
+        observeSaveSelectedMovieResponse()
 
         gridView.setOnItemClickListener(object : AdapterView.OnItemClickListener {
             override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -71,14 +71,24 @@ class FragmentFavourites : DaggerFragment() {
     }
 
     private fun observeGetFavoritedMovieResponse() {
+        emptyState.visibility = View.GONE
         viewModel.observeGetFavoritedMovieResponse().observe(this, Observer {
             when (it?.status) {
                 ResourceState.SUCCESS -> {
                     val data = it.data
                     if (data != null) {
                         movieList = data
-                        movieList?.let { favoriteMoviesAdapter.setList(it) }
-                        favoriteMoviesAdapter.notifyDataSetChanged()
+                        movieList?.let {
+                            if (it.size > 0) {
+                                gridView.visibility = View.VISIBLE
+                                emptyState.visibility = View.GONE
+                                favoriteMoviesAdapter.setList(it)
+                                favoriteMoviesAdapter.notifyDataSetChanged()
+                            } else {
+                                gridView.visibility = View.GONE
+                                emptyState.visibility = View.VISIBLE
+                            }
+                        }
                     }
                 }
                 ResourceState.ERROR -> {
