@@ -34,7 +34,8 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/addToFavorites"
             android:paddingLeft="8dp"
-            android:paddingRight="8dp"/>
+            android:paddingRight="8dp"
+            android:textStyle="bold"/>
 
     <ImageView
             android:id="@+id/addToFavorites"
@@ -43,6 +44,7 @@
             app:layout_constraintTop_toBottomOf="@id/poster"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:src="@mipmap/ic_launcher_round"/>
+            android:src="@drawable/ic_favorite"
+            android:scaleType="centerInside"/>
 
 </android.support.constraint.ConstraintLayout>

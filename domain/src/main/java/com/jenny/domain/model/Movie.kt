@@ -15,5 +15,5 @@ data class Movie(
     val vote_count: Int = 0,
     val video: Boolean = false,
     val vote_average: Double = 0.0,
-    val isShortlisted: Boolean = false
+    var isShortlisted: Boolean = false
 )

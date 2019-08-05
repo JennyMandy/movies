@@ -3,7 +3,7 @@
     <item
             android:id="@+id/search_menu"
             android:title="Search"
-            android:icon="@mipmap/ic_launcher_round"
+            android:icon="@drawable/ic_search"
             app:showAsAction="always"
             app:actionViewClass="android.support.v7.widget.SearchView"/>
 </menu>

@@ -24,6 +24,10 @@ class ActivityMovieDetail : DaggerAppCompatActivity() {
 
     lateinit var poster: ImageView
     lateinit var name: TextView
+    lateinit var movieDetail: TextView
+    lateinit var releaseDate: TextView
+    lateinit var avgVote: TextView
+    lateinit var lang: TextView
 
     companion object {
         fun initActivity(context: Context): Intent {
@@ -36,7 +40,11 @@ class ActivityMovieDetail : DaggerAppCompatActivity() {
         setContentView(R.layout.activity_movie_detail)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MovieDetailViewModel::class.java)
         poster = findViewById<ImageView>(R.id.poster)
-        name = findViewById<TextView>(R.id.name)
+        name = findViewById(R.id.name)
+        movieDetail = findViewById(R.id.movie_detail)
+        releaseDate = findViewById(R.id.release_date)
+        avgVote = findViewById(R.id.avg_vote)
+        lang = findViewById(R.id.lang)
         observeGetSelectedMovieResponse()
         viewModel.getSelectedMovie(intent.getIntExtra(Constants.MOVIE_ID, 0))
     }
@@ -47,8 +55,12 @@ class ActivityMovieDetail : DaggerAppCompatActivity() {
                 ResourceState.SUCCESS -> {
                     val movie = it.data
                     name.text = movie?.title
-                    Picasso.get().load(Constants.IMAGE_URL + movie?.poster_path)
-                        .placeholder(R.drawable.abc_ic_ab_back_material).into(poster)
+                    movieDetail.text = movie?.overview
+                    releaseDate.text = movie?.release_date
+                    avgVote.text = movie?.vote_average.toString()
+                    lang.text = movie?.original_language
+                    Picasso.get().load(Constants.IMAGE_URL + movie?.backdrop_path)
+                        .placeholder(R.drawable.ic_movie_placeholder).into(poster)
                 }
                 ResourceState.ERROR -> {
 

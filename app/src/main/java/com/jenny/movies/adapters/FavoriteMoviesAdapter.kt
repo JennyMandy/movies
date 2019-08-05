@@ -30,7 +30,7 @@ class FavoriteMoviesAdapter(
         }
         val movie = movieList.get(position)
         viewHolder.name.text = movie.title
-        Picasso.get().load(Constants.IMAGE_URL + movie.poster_path).placeholder(R.drawable.abc_ic_ab_back_material).into(viewHolder.poster)
+        Picasso.get().load(Constants.IMAGE_URL + movie.poster_path).placeholder(R.drawable.ic_movie_placeholder).into(viewHolder.poster)
         return view
     }
 

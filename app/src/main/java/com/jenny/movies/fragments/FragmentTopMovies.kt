@@ -232,14 +232,17 @@ class FragmentTopMovies : DaggerFragment(), MovieClickListener, SearchListener {
 
     override fun imageClicked(position: Int) {
         movieList?.let {
-            saveMovieData(it.get(position))
-            movieId = it.get(position).id
+            val movieSelected = it.get(position)
+            saveMovieData(movieSelected)
+            movieId = movieSelected.id
         }
     }
 
     override fun favoriteClicked(position: Int) {
         movieList?.let {
-            setFavouritedMovie(it.get(position))
+            val movieSelected = it.get(position)
+            movieSelected.isShortlisted = true
+            setFavouritedMovie(movieSelected)
         }
     }
 
