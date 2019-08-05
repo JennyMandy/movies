@@ -12,17 +12,24 @@ import org.mockito.MockitoAnnotations
 class MoviesDataStoreFactoryTest {
     @Mock
     private lateinit var moviesRemoteDataStore: MoviesRemoteDataStore
+    @Mock
+    private lateinit var moviesCacheDataStore: MoviesCacheDataStore
 
     private lateinit var moviesDataStoreFactory: MoviesDataStoreFactory
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        moviesDataStoreFactory = MoviesDataStoreFactory(moviesRemoteDataStore)
+        moviesDataStoreFactory = MoviesDataStoreFactory(moviesRemoteDataStore, moviesCacheDataStore)
     }
 
     @Test
     fun getsRemoteDataStoreCorrectlyTest() {
         Assert.assertEquals(moviesRemoteDataStore, moviesDataStoreFactory.moviesRemoteDataStore)
+    }
+
+    @Test
+    fun getsCacheDataStoreCorrectlyTest() {
+        Assert.assertEquals(moviesCacheDataStore, moviesDataStoreFactory.moviesCacheDataStore)
     }
 }

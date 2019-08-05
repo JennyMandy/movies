@@ -32,6 +32,10 @@ class MoviesListImplTest {
         Mockito.`when`(movieListService.getTopRatedMovies(Constants.API_KEY, pageNo)).thenReturn(single)
     }
 
+    private fun stubGetSearchResults(single: Single<TopRatedMovieResponse>, pageNo: Int, query: String) {
+        Mockito.`when`(movieListService.getSearchResults(Constants.API_KEY, pageNo, query)).thenReturn(single)
+    }
+
     @Test
     fun getMovieListCompletesTest() {
         val pageNo = 1
@@ -56,6 +60,36 @@ class MoviesListImplTest {
         val movieList = DataFactory.getRandomTopMovieList()
         stubGetTopRatedMovies(Single.just(movieList), pageNo)
         val testObserver = moviesListRemoteImpl.getTopRatedMovies(pageNo).test()
+        testObserver.assertValue(movieList)
+    }
+
+    @Test
+    fun getSearchResultsCompletesTest() {
+        val pageNo = 1
+        val query = DataFactory.getRandomString()
+        val movieList = DataFactory.getRandomTopMovieList()
+        stubGetSearchResults(Single.just(movieList), pageNo, query)
+        val testObserver = moviesListRemoteImpl.getSearchResults(pageNo, query).test()
+        testObserver.assertComplete()
+    }
+
+    @Test
+    fun getSearchResultsApiCalled() {
+        val pageNo = 1
+        val query = DataFactory.getRandomString()
+        val movieList = DataFactory.getRandomTopMovieList()
+        stubGetSearchResults(Single.just(movieList), pageNo, query)
+        moviesListRemoteImpl.getSearchResults(pageNo, query).test()
+        verify(movieListService).getSearchResults(Constants.API_KEY, pageNo, query)
+    }
+
+    @Test
+    fun getSearchResultsReturnsData() {
+        val pageNo = 1
+        val query = DataFactory.getRandomString()
+        val movieList = DataFactory.getRandomTopMovieList()
+        stubGetSearchResults(Single.just(movieList), pageNo, query)
+        val testObserver = moviesListRemoteImpl.getSearchResults(pageNo, query).test()
         testObserver.assertValue(movieList)
     }
 }

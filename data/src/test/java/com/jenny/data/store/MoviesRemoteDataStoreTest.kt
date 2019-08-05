@@ -2,6 +2,7 @@ package com.jenny.data.store
 
 import com.jenny.data.repository.MoviesRemote
 import com.jenny.domain.factory.DataFactory
+import com.jenny.domain.model.Movie
 import com.jenny.domain.response.TopRatedMovieResponse
 import io.reactivex.Single
 import org.junit.Before
@@ -25,15 +26,19 @@ class MoviesRemoteDataStoreTest {
         moviesRemoteDataStore = MoviesRemoteDataStore(moviesRemote)
     }
 
-    private fun stubGetTopRatedMoviese(single: Single<TopRatedMovieResponse>, pageNo: Int) {
+    private fun stubGetTopRatedMovies(single: Single<TopRatedMovieResponse>, pageNo: Int) {
         Mockito.`when`(moviesRemote.getTopRatedMovies(pageNo)).thenReturn(single)
+    }
+
+    private fun stubGetSearchResults(single: Single<TopRatedMovieResponse>, pageNo: Int, query: String) {
+        Mockito.`when`(moviesRemote.getSearchResults(pageNo, query)).thenReturn(single)
     }
 
     @Test
     fun getTopRatedMoviesCompleteTest() {
         val pageNo = DataFactory.getRandomInt()
         val topRatedMovieResponse = DataFactory.getRandomTopMovieList()
-        stubGetTopRatedMoviese(Single.just(topRatedMovieResponse), pageNo)
+        stubGetTopRatedMovies(Single.just(topRatedMovieResponse), pageNo)
         val testObserver = moviesRemoteDataStore.getTopRatedMovies(pageNo).test()
         testObserver.assertComplete()
     }
@@ -42,8 +47,49 @@ class MoviesRemoteDataStoreTest {
     fun getTopRatedMoviesReturnsDataTest() {
         val pageNo = DataFactory.getRandomInt()
         val topRatedMovieResponse = DataFactory.getRandomTopMovieList()
-        stubGetTopRatedMoviese(Single.just(topRatedMovieResponse), pageNo)
+        stubGetTopRatedMovies(Single.just(topRatedMovieResponse), pageNo)
         val testObserver = moviesRemoteDataStore.getTopRatedMovies(pageNo).test()
         testObserver.assertValue(topRatedMovieResponse)
     }
+
+    @Test
+    fun getGetSearchResultsCompletesTest() {
+        val pageNo = DataFactory.getRandomInt()
+        val query = DataFactory.getRandomString()
+        val topRatedMovieResponse = DataFactory.getRandomTopMovieList()
+        stubGetSearchResults(Single.just(topRatedMovieResponse), pageNo, query)
+        val testObserver = moviesRemoteDataStore.getSearchResults(pageNo, query).test()
+        testObserver.assertComplete()
+    }
+
+    @Test
+    fun getGetSearchResultsReturnsDataTest() {
+        val pageNo = DataFactory.getRandomInt()
+        val query = DataFactory.getRandomString()
+        val topRatedMovieResponse = DataFactory.getRandomTopMovieList()
+        stubGetSearchResults(Single.just(topRatedMovieResponse), pageNo, query)
+        val testObserver = moviesRemoteDataStore.getSearchResults(pageNo, query).test()
+        testObserver.assertValue(topRatedMovieResponse)
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun getSelectedMovieCompletesTest() {
+        moviesRemoteDataStore.getSelectedMovie(1)
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun getFavouritedMoviesCompletesTest() {
+        moviesRemoteDataStore.getFavouritedMovies()
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun setSelectedMovieCompletesTest() {
+        moviesRemoteDataStore.setSelectedMovie(Movie())
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun setFavouriteMovieCompletesTest() {
+        moviesRemoteDataStore.setFavouriteMovie(Movie())
+    }
+
 }
