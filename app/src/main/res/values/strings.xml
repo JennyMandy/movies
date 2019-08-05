@@ -3,4 +3,10 @@
     <string name="tab_one">Top rated</string>
     <string name="tab_two">Favourites</string>
     <string name="image_poster">image_poster</string>
+    <string name="try_again">Something went wrong. Please try again</string>
+    <string name="movie_name">Movie name:</string>
+    <string name="movie_description">Movie description:</string>
+    <string name="release_date">Release date:</string>
+    <string name="average_vote">Average vote:</string>
+    <string name="original_language">Original language:</string>
 </resources>

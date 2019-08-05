@@ -10,7 +10,7 @@
             android:layout_height="280dp"
             android:layout_gravity="center"
             android:scaleType="centerCrop"
-            android:contentDescription="image_poster"
+            android:contentDescription="@string/image_poster"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -18,9 +18,9 @@
             android:id="@+id/label1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Movie name: "
+            android:text="@string/movie_name"
             android:layout_marginTop="56dp"
-            android:paddingLeft="24dp"
+            android:paddingStart="24dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/poster"
             android:textStyle="bold|italic"/>
@@ -30,7 +30,8 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/poster"
             app:layout_constraintLeft_toRightOf="@id/label1"
-            android:paddingRight="24dp"
+            android:paddingEnd="24dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="56dp"
             tools:text="Dilwale Dulhania Le Jayenge"
     />
@@ -39,7 +40,7 @@
             android:id="@+id/label2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Movie description: "
+            android:text="@string/movie_description"
             android:layout_marginTop="12dp"
             android:paddingLeft="24dp"
             android:paddingRight="24dp"
@@ -62,7 +63,7 @@
             android:id="@+id/label3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Release date: "
+            android:text="@string/release_date"
             android:layout_marginTop="8dp"
             android:paddingLeft="24dp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -74,7 +75,8 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/movie_detail"
             app:layout_constraintLeft_toRightOf="@id/label3"
-            android:paddingRight="24dp"
+            android:paddingEnd="24dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             tools:text="1995-10-20"/>
 
@@ -82,7 +84,7 @@
             android:id="@+id/label4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Average vote: "
+            android:text="@string/average_vote"
             android:layout_marginTop="8dp"
             android:paddingLeft="24dp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -94,7 +96,8 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/release_date"
             app:layout_constraintLeft_toRightOf="@id/label4"
-            android:paddingRight="24dp"
+            android:paddingEnd="24dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             tools:text="1995-10-20"/>
 
@@ -102,7 +105,7 @@
             android:id="@+id/label5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Original language: "
+            android:text="@string/original_language"
             android:layout_marginTop="8dp"
             android:paddingLeft="24dp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -114,7 +117,8 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/avg_vote"
             app:layout_constraintLeft_toRightOf="@id/label5"
-            android:paddingRight="24dp"
+            android:layout_marginStart="4dp"
+            android:paddingEnd="24dp"
             android:layout_marginTop="8dp"
             tools:text="1995-10-20"/>
 </android.support.constraint.ConstraintLayout>

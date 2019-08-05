@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.AbsListView
 import android.widget.GridView
 import android.widget.ProgressBar
+import android.widget.Toast
 import com.jenny.domain.model.Movie
 import com.jenny.movies.Constants
 import com.jenny.movies.R
@@ -102,10 +103,12 @@ class FragmentTopMovies : DaggerFragment(), MovieClickListener, SearchListener {
                         }
                         movieList?.let { topMoviesAdapter.setList(it) }
                         topMoviesAdapter.notifyDataSetChanged()
+                    } else {
+                        Toast.makeText(context, getString(R.string.try_again), Toast.LENGTH_SHORT).show()
                     }
                 }
                 ResourceState.ERROR -> {
-
+                    Toast.makeText(context, getString(R.string.try_again), Toast.LENGTH_SHORT).show()
                 }
                 else -> {
                 }
@@ -121,10 +124,12 @@ class FragmentTopMovies : DaggerFragment(), MovieClickListener, SearchListener {
                         val intent = Intent(context, ActivityMovieDetail::class.java)
                         intent.putExtra(Constants.MOVIE_ID, movieId)
                         startActivity(intent)
+                    } else {
+                        Toast.makeText(context, getString(R.string.try_again), Toast.LENGTH_SHORT).show()
                     }
                 }
                 ResourceState.ERROR -> {
-
+                    Toast.makeText(context, getString(R.string.try_again), Toast.LENGTH_SHORT).show()
                 }
                 else -> {
                 }
@@ -139,7 +144,7 @@ class FragmentTopMovies : DaggerFragment(), MovieClickListener, SearchListener {
 
                 }
                 ResourceState.ERROR -> {
-
+                    Toast.makeText(context, getString(R.string.try_again), Toast.LENGTH_SHORT).show()
                 }
                 else -> {
                 }
@@ -165,10 +170,12 @@ class FragmentTopMovies : DaggerFragment(), MovieClickListener, SearchListener {
                         if (data.page == 1) {
                             gridView.setSelection(0)
                         }
+                    } else {
+                        Toast.makeText(context, getString(R.string.try_again), Toast.LENGTH_SHORT).show()
                     }
                 }
                 ResourceState.ERROR -> {
-
+                    Toast.makeText(context, getString(R.string.try_again), Toast.LENGTH_SHORT).show()
                 }
                 else -> {
                 }
@@ -193,7 +200,7 @@ class FragmentTopMovies : DaggerFragment(), MovieClickListener, SearchListener {
     }
 
     private fun getSearchedMovies() {
-        if (searchQuery != null) {
+        if (!searchQuery.isNullOrEmpty()) {
             searchQuery?.let {
                 viewModel.getSearchedMovies(pageNo, it)
             }
@@ -206,7 +213,7 @@ class FragmentTopMovies : DaggerFragment(), MovieClickListener, SearchListener {
 
     private fun getNextPage() {
         incrementPageNo()
-        if (isSearchSet) {
+        if (isSearchSet && !searchQuery.isNullOrEmpty()) {
             getSearchedMovies()
         } else {
             getTopRatedMovies()

@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.GridView
+import android.widget.Toast
 import com.jenny.domain.model.Movie
 import com.jenny.movies.Constants
 import com.jenny.movies.R
@@ -81,7 +82,7 @@ class FragmentFavourites : DaggerFragment() {
                     }
                 }
                 ResourceState.ERROR -> {
-
+                    Toast.makeText(context, getString(R.string.try_again), Toast.LENGTH_SHORT).show()
                 }
                 else -> {
                 }
@@ -98,7 +99,7 @@ class FragmentFavourites : DaggerFragment() {
                     startActivity(intent)
                 }
                 ResourceState.ERROR -> {
-
+                    Toast.makeText(context, getString(R.string.try_again), Toast.LENGTH_SHORT).show()
                 }
                 else -> {
                 }

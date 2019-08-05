@@ -11,12 +11,14 @@ import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.view.ViewConfiguration
+import android.view.inputmethod.InputMethodManager
 import com.jenny.movies.R
 import com.jenny.movies.adapters.TabAdapter
 import com.jenny.movies.fragments.FragmentFavourites
 import com.jenny.movies.fragments.FragmentTopMovies
 import com.jenny.movies.listener.SearchListener
 import dagger.android.support.DaggerAppCompatActivity
+
 
 class TopRatedMoviesActivity : DaggerAppCompatActivity() {
     private lateinit var tabAdapter: TabAdapter
@@ -65,6 +67,8 @@ class TopRatedMoviesActivity : DaggerAppCompatActivity() {
     private fun searchMovies(query: String?) {
         listener?.movieSearched(query)
         viewPager.currentItem = 0
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -72,21 +76,40 @@ class TopRatedMoviesActivity : DaggerAppCompatActivity() {
         inflater.inflate(R.menu.options_menu, menu)
 
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        val searchView = menu.findItem(R.id.search_menu).actionView as SearchView
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
-        searchView.isSubmitButtonEnabled
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(string: String?): Boolean {
-                searchMovies(string)
-                return true
-            }
+        searchView = menu.findItem(R.id.search_menu).actionView as SearchView
+        searchView?.let { searchView ->
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
+            searchView.isSubmitButtonEnabled
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(string: String): Boolean {
+                    searchMovies(string)
+                    return true
+                }
 
-            override fun onQueryTextChange(query: String): Boolean {
-                return true
-            }
-        })
+                override fun onQueryTextChange(query: String): Boolean {
+                    if (query.isEmpty()) {
+                        searchMovies("")
+                    }
+                    return true
+                }
+            })
+        }
 
         return true
+    }
+
+    override fun onBackPressed() {
+        if (searchView == null) {
+            super.onBackPressed()
+        } else {
+            searchView?.let {
+                if (it.isIconified) {
+                    super.onBackPressed()
+                } else {
+                    it.onActionViewCollapsed()
+                }
+            }
+        }
     }
 
 }
