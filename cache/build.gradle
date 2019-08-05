@@ -33,6 +33,11 @@ android {
     testOptions {
         unitTests {
             includeAndroidResources = true
+            unitTests.all {
+                // All the usual Gradle options.
+                jvmArgs '-XX:MaxPermSize=256m'
+            }
+            unitTests.returnDefaultValues = true
         }
     }
 
@@ -59,4 +64,17 @@ dependencies {
     implementation cacheDependencies.dagger
     kapt cacheDependencies.roomCompiler
     kapt cacheDependencies.daggerCompiler
+
+    //Testing libraries
+    testImplementation cacheDependencies.jUnit
+    testImplementation cacheDependencies.assertJ
+    testImplementation cacheDependencies.mockitoCore
+    testImplementation cacheDependencies.mockitoInline
+    testImplementation cacheDependencies.kotlinUnit
+    testImplementation cacheDependencies.androidRunner
+    testImplementation cacheDependencies.androidTestRules
+    testImplementation cacheDependencies.mockitoKotlin
+    testImplementation cacheDependencies.roomTesting
+    testImplementation cacheDependencies.archTesting
+    testImplementation cacheDependencies.robolectric
 }
